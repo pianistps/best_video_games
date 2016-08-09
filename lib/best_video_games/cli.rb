@@ -8,21 +8,6 @@ class BestVideoGames::CLI
   end
 
   def menu
-    #puts "Best Video Games by score"
-    # puts <<-DOC.gsub /^\s*/, ''
-    # What range would you like to see?
-    # 1-20, 20-40, 40-60, 60-80, or 80-100?
-    # DOC
-    # input = gets.strip
-    # if input.to_i < 20 && input.to_i >=1
-    #   list_games
-    # elsif input.to_i < 40 && input.to_i >= 20
-    #   puts "Video Games 20-40"
-    # elsif input.to_i < 60 && input.to_i >= 80
-    #   puts "Video Games 60-80"
-    # elsif input.to_i < 80 && input.to_i >= 100
-    #   puts "Video Games 20-40"
-    # end
     input2 = nil
     while input2 != "exit"
       puts <<-DOC.gsub /^\s*/, ''
