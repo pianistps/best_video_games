@@ -2,25 +2,24 @@
 class BestVideoGames::CLI
 
   def call
-    list_games
     menu
     goodbye
   end
 
   def menu
-    input2 = nil
-    while input2 != "exit"
+    input = nil
+    while input != "exit"
+      list_games
       puts <<-DOC.gsub /^\s*/, ''
       Which Video game would you like more info about?
       To list video game ranges type list games or exit to leave.
       DOC
-      input2 = gets.strip.downcase
-      case input2
-      when "1"
-        puts "info on 1"
-      when "2"
-        puts "info on 2"
-      when "list games"
+
+      input = gets.strip.downcase
+      if input.to_i > 0
+        the_game = @games[input.to_i-1]
+        puts "#{the_game.name} - Score: #{the_game.score} - Console: #{the_game.console}"
+      elsif input == "list games"
         list_games
       else
         puts "Not sure what you want,Please type list games or exit."
@@ -31,6 +30,9 @@ class BestVideoGames::CLI
   def list_games
     puts "Best Video Games by score(last 90 days)"
     @games = BestVideoGames::VideoGame.today
+    @games.each.with_index(1) do |game, i|
+      puts "#{i}. #{game.name} - Score: #{game.score} - Console: #{game.console}"
+    end
   end
 
   def goodbye

@@ -1,9 +1,23 @@
-class VideoGame
+class BestVideoGames::VideoGame
+  attr_accessor :name, :score, :console, :url
 
   def self.today
-    #should return a bunch of instances of video games
-    puts "1. Inside - Score: 93 - Console: XONE"
-    puts "2. Uncharted 4: A thiefs End - Score: 93 - Console: PS4"
+    #scrape metacritic and return games based on data
+    self.scrape_deals
   end
 
+  def self.scrape_deals
+    games = []
+
+    games << self.scrape_metacritic
+    #Go to metacritic, find game
+    #extract properties
+    #instantiate game
+    games
+  end
+
+  def self.scrape_metacritic
+    doc = Nokogiri::HTML(open("http://www.metacritic.com/browse/games/score/metascore/90day/all/filtered?sort=desc"))
+    binding.pry
+  end
 end
