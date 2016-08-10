@@ -23,5 +23,5 @@ class BestVideoGames::VideoGame
 end
 #name = doc.css("td a")[0].text
 #score = doc.css("td span b")[0].text
-#console =doc.css("td td").text
+#console =doc.css("").text
 #url =
