@@ -19,9 +19,14 @@ class BestVideoGames::VideoGame
   def self.scrape_gamerankings
     doc = Nokogiri::HTML(open("http://www.gamerankings.com/browse.html"))
     binding.pry
+
+    #table_data = doc.css("body table").first
+    #one game = tr
+
   end
 end
 #name = doc.css("td a")[0].text
 #score = doc.css("td span b")[0].text
-#console =doc.css("").text
-#url =
+#console_name = doc.css("td a").attribute("href").text.split("/")
+#console = console_name[1]
+#url = "http://www.gamerankings.com#{console_name}"
