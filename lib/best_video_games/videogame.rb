@@ -1,5 +1,5 @@
 class BestVideoGames::VideoGame
-  attr_accessor :name, :score, :console, :url
+  attr_accessor :name, :score, :console, :url, :description
 
   def self.today
     #scrape gamerankings and return games based on data
@@ -21,8 +21,16 @@ class BestVideoGames::VideoGame
       console_name = x.css("td a").attribute("href").text.split("/")
       game.console = console_name[1]
       game.url = "http://www.gamerankings.com#{x.css("td a").attribute("href").text}"
+      game.description = self.scrape_description(game.url)
       game
     end
+  end
+
+  def self.scrape_description(game_url)
+    doc = Nokogiri::HTML(open(game_url))
+    #binding.pry
+    doc.css("div.details").first.text
+    #BestVideoGames::VideoGame.scrape_description("http://www.gamerankings.com/dreamcast/198705-soulcalibur/index.html")
   end
 end
 

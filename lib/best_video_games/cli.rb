@@ -19,8 +19,9 @@ class BestVideoGames::CLI
       input = gets.strip.downcase
       if input.to_i > 0
         the_game = @games[input.to_i-1]
+        puts ""
         puts "#{the_game.name} - Score: #{the_game.score} - Console: #{the_game.console}"
-        puts "the_game.description"
+        puts "Description: #{the_game.description}"
       elsif input == "list games"
         list_games
       else
