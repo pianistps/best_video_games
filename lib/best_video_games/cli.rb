@@ -13,7 +13,7 @@ class BestVideoGames::CLI
       puts ""
       puts <<-DOC.gsub /^\s*/, ''
       Which Video game would you like more info about?
-      To list video game ranges type list games or exit to leave.
+      To list video games type "list games" or "exit" to leave.
       DOC
 
       input = gets.strip.downcase
