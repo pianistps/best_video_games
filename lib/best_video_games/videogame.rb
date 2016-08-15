@@ -3,10 +3,10 @@ class BestVideoGames::VideoGame
 
   def self.today
     #scrape gamerankings and return games based on data
-    self.scrape_deals
+    self.scrape_games
   end
 
-  def self.scrape_deals
+  def self.scrape_games
     games = []
 
     games << self.scrape_gamerankings
@@ -18,12 +18,17 @@ class BestVideoGames::VideoGame
 
   def self.scrape_gamerankings
     doc = Nokogiri::HTML(open("http://www.gamerankings.com/browse.html"))
-    binding.pry
-
-     table_data = doc.css("body table").first
-     #table_data.xpath("//tr").select do |x|
-       #@name = x.css("td a")[0].text
-     #end
+    #binding.pry
+    table_data = doc.css("body table").first
+    table_data.xpath("//tr").collect do |x|
+      game = self.new
+      game.name = x.css("td a")[0].text
+      game.score = x.css("td span b")[0].text
+      console_name = x.css("td a").attribute("href").text.split("/")
+      game.console = console_name[1]
+      game.url = "http://www.gamerankings.com#{x.css("td a").attribute("href").text}"
+      game
+    end
   end
 end
 # table = doc.css("body table").first
@@ -33,3 +38,8 @@ end
 #console_name = doc.css("td a").attribute("href").text.split("/")
 #console = console_name[1]
 #url = "http://www.gamerankings.com#{doc.css("td a").attribute("href").text}"
+
+#table_data = doc.css("body table").first
+# doc.css("body table").children.each do |child|
+#    child.text
+# end
