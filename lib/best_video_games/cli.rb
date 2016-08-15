@@ -3,6 +3,7 @@ class BestVideoGames::CLI
   attr_accessor :name, :score, :console, :url
 
   def call
+    list_games
     menu
     goodbye
   end
@@ -10,7 +11,6 @@ class BestVideoGames::CLI
   def menu
     input = nil
     while input != "exit"
-      list_games
       puts <<-DOC.gsub /^\s*/, ''
       Which Video game would you like more info about?
       To list video game ranges type list games or exit to leave.
