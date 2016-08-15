@@ -1,6 +1,5 @@
 #CLI controller
 class BestVideoGames::CLI
-  attr_accessor :name, :score, :console, :url
 
   def call
     list_games
