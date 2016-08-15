@@ -20,6 +20,7 @@ class BestVideoGames::CLI
       if input.to_i > 0
         the_game = @games[input.to_i-1]
         puts "#{the_game.name} - Score: #{the_game.score} - Console: #{the_game.console}"
+        puts "the_game.description"
       elsif input == "list games"
         list_games
       else
@@ -29,7 +30,7 @@ class BestVideoGames::CLI
   end
 
   def list_games
-    puts "Best Video Games by score(last 90 days)"
+    puts "------------- BEST VIDEO GAMES OF ALL TIME(by score) -------------"
     @games = BestVideoGames::VideoGame.today
     @games.each.with_index(1) do |game, i|
       puts "#{i}. #{game.name} - Score: #{game.score} - Console: #{game.console}"
