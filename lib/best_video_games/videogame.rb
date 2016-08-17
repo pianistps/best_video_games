@@ -3,11 +3,10 @@ class BestVideoGames::VideoGame
 
   def self.today
     #scrape gamerankings and return games based on data
-    games = self.scrape_gamerankings
+    self.scrape_gamerankings
     #Go to gamerankings, find game
     #extract properties
     #instantiate game
-    games
   end
 
   def self.scrape_gamerankings

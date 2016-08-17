@@ -17,7 +17,7 @@ class BestVideoGames::CLI
       DOC
 
       input = gets.strip.downcase
-      if input.to_i > 0
+      if input.to_i.between?(1, @games.length)
         the_game = @games[input.to_i-1]
         puts ""
         puts "#{the_game.name} - Score: #{the_game.score} - Console: #{the_game.console}"
@@ -32,7 +32,7 @@ class BestVideoGames::CLI
 
   def list_games
     puts "------------- BEST VIDEO GAMES OF ALL TIME(by score) -------------"
-    @games = BestVideoGames::VideoGame.today
+    @games ||= BestVideoGames::VideoGame.today
     @games.each.with_index(1) do |game, i|
       puts "#{i}. #{game.name} - Score: #{game.score} - Console: #{game.console}"
     end
